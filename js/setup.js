@@ -2,7 +2,11 @@ var setupWindow = document.querySelector('.setup');
 var setupWindowOpen = document.querySelector('.setup-open')
 var setupWindowClose = document.querySelector('.setup-close');
 var setupWindowUsername = setupWindow.querySelector('.setup-user-name');
+
 var setupWizard = document.querySelector('.setup-wizard');
+var setupWizardCoat = setupWizard.querySelector('.wizard-coat');
+var wizardCoatInput = document.querySelector('input[name="coat-color"]');
+
 var ESC_KEYCODE = 27;
 var ENTER_KEYCODE = 13;
 var setupSimilarList = document.querySelector('.setup-similar-list');
@@ -14,6 +18,13 @@ var dataWizards = {
   COATS: ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'],
   EYES_COLORS: ['black', 'red', 'blue', 'yellow', 'green']
 };
+var dataPlayerWizard = {
+  COATS: ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'],
+  EYES_COLORS: ['black', 'red', 'blue', 'yellow', 'green'],
+  FIREBALL_COLORS: ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e848']
+};
+
+var countCounter = 0;
 
 setupWindowOpen.addEventListener('click', function () {
   openSetup();
@@ -43,7 +54,22 @@ setupWindowClose.addEventListener('keydown', function (evt) {
   }
 });
 
-// функция событие на закрытие окна по клавише ESC
+setupWizardCoat.addEventListener('click', function () {
+  changeWizardCoat();
+});
+
+var changeWizardCoat = function () {
+  if (countCounter === (dataPlayerWizard.COATS.length - 1)) {
+    countCounter = 0;
+  } else {
+    countCounter++;
+  }
+  setupWizardCoat.style.fill = dataPlayerWizard.COATS[countCounter];
+  wizardCoatInput.value = dataPlayerWizard.COATS[countCounter];
+  console.log(wizardCoatInput.value);
+};
+
+// функция-событие на закрытие окна по клавише ESC
 var onSetupWindowEscPress = function (evt) {
   if (evt.keyCode === ESC_KEYCODE) {
     closeSetup();
