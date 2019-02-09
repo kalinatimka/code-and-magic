@@ -1,8 +1,3 @@
-var setupWindow = document.querySelector('.setup');
-var setupWindowOpen = document.querySelector('.setup-open')
-var setupWindowClose = document.querySelector('.setup-close');
-var setupWindowUsername = setupWindow.querySelector('.setup-user-name');
-
 var setupWizard = document.querySelector('.setup-wizard');
 var setupWizardCoat = setupWizard.querySelector('.wizard-coat');
 var wizardCoatInput = document.querySelector('input[name="coat-color"]');
@@ -32,34 +27,6 @@ var coatCounter = 0;
 var eyeCounter = 0;
 var fireballCounter = 0;
 
-setupWindowOpen.addEventListener('click', function () {
-  openSetup();
-});
-
-setupWindowOpen.addEventListener('keydown', function (evt) {
-  if (evt.keyCode === ENTER_KEYCODE) {
-    openSetup();
-  }
-});
-
-setupWindowUsername.addEventListener('focus', function () {
-  useEscExit(false);
-});
-
-setupWindowUsername.addEventListener('blur', function () {
-  useEscExit(true);
-});
-
-setupWindowClose.addEventListener('click', function () {
-  closeSetup();
-});
-
-setupWindowClose.addEventListener('keydown', function (evt) {
-  if (evt.keyCode === ENTER_KEYCODE) {
-    closeSetup();
-  }
-});
-
 setupWizardCoat.addEventListener('click', function () {
   coatCounter = changeCounter(coatCounter, dataPlayerWizard.COATS);
   setupWizardCoat.style.fill = dataPlayerWizard.COATS[coatCounter];
@@ -86,45 +53,6 @@ var changeCounter = function (counter, mas) {
   }
   return counter;
 }
-
-// var changeWizardCoat = function () {
-//   if (coatCounter === (dataPlayerWizard.COATS.length - 1)) {
-//     coatCounter = 0;
-//   } else {
-//     coatCounter++;
-//   }
-//   setupWizardCoat.style.fill = dataPlayerWizard.COATS[coatCounter];
-//   wizardCoatInput.value = dataPlayerWizard.COATS[coatCounter];
-// };
-
-// функция-событие на закрытие окна по клавише ESC
-var onSetupWindowEscPress = function (evt) {
-  if (evt.keyCode === ESC_KEYCODE) {
-    closeSetup();
-  }
-}
-
-// функция открытия окна настройки персонажа
-var openSetup = function () {
-  setupWindow.classList.remove('hidden');
-  document.querySelector('.setup-similar').classList.remove('hidden');
-  useEscExit(true);
-};
-
-// функция закрытия окна настройки персонажа
-var closeSetup = function () {
-  setupWindow.classList.add('hidden');
-  useEscExit(false);
-};
-
-// функция добавления/удаления события для закрытия окна на ESC
-var useEscExit = function (flag) {
-  if (flag) {
-    document.addEventListener('keydown', onSetupWindowEscPress);
-  } else {
-    document.removeEventListener('keydown', onSetupWindowEscPress);
-  }
-};
 
 // функция рандомного объединения имени и фамилии волшебника
 var generateNames = function () {
