@@ -33,7 +33,7 @@ var generateWizards = function () {
   return wizards;
 };
 
-// функция присвоения данных элементам разметки 
+// функция присвоения данных элементам разметки
 var renderWizard = function (wizard) {
   var wizardElement = similarWizardTemplate.cloneNode(true);
   wizardElement.querySelector('.setup-similar-label').textContent = wizard.name;
@@ -53,4 +53,3 @@ var renderWizards = function () {
 };
 
 renderWizards();
-console.dir(setupWindowOpen);

@@ -26,7 +26,7 @@
     document.querySelector('.setup-similar').classList.remove('hidden');
     useEscExit(true);
   };
-  
+
   // функция закрытия окна настройки персонажа
   var closeSetup = function () {
     setupWindow.classList.add('hidden');
@@ -36,15 +36,15 @@
   setupWindowUsername.addEventListener('focus', function () {
     useEscExit(false);
   });
-  
+
   setupWindowUsername.addEventListener('blur', function () {
     useEscExit(true);
   });
-  
+
   setupWindowClose.addEventListener('click', function () {
     closeSetup();
   });
-  
+
   setupWindowClose.addEventListener('keydown', function (evt) {
     if (evt.keyCode === ENTER_KEYCODE) {
       closeSetup();
