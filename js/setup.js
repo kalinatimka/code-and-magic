@@ -6,6 +6,10 @@ var setupWindowUsername = setupWindow.querySelector('.setup-user-name');
 var setupWizard = document.querySelector('.setup-wizard');
 var setupWizardCoat = setupWizard.querySelector('.wizard-coat');
 var wizardCoatInput = document.querySelector('input[name="coat-color"]');
+var setupWizardEyes = setupWizard.querySelector('.wizard-eyes');
+var wizardEyesInput = document.querySelector('input[name="eyes-color"]');
+var setupFireball = document.querySelector('.setup-fireball-wrap');
+var fireballInput = setupFireball.querySelector('input[name="fireball-color"]');
 
 var ESC_KEYCODE = 27;
 var ENTER_KEYCODE = 13;
@@ -24,7 +28,9 @@ var dataPlayerWizard = {
   FIREBALL_COLORS: ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e848']
 };
 
-var countCounter = 0;
+var coatCounter = 0;
+var eyeCounter = 0;
+var fireballCounter = 0;
 
 setupWindowOpen.addEventListener('click', function () {
   openSetup();
@@ -55,19 +61,41 @@ setupWindowClose.addEventListener('keydown', function (evt) {
 });
 
 setupWizardCoat.addEventListener('click', function () {
-  changeWizardCoat();
+  coatCounter = changeCounter(coatCounter, dataPlayerWizard.COATS);
+  setupWizardCoat.style.fill = dataPlayerWizard.COATS[coatCounter];
+  wizardCoatInput.value = dataPlayerWizard.COATS[coatCounter];
 });
 
-var changeWizardCoat = function () {
-  if (countCounter === (dataPlayerWizard.COATS.length - 1)) {
-    countCounter = 0;
+setupWizardEyes.addEventListener('click', function () {
+  eyeCounter = changeCounter(eyeCounter, dataPlayerWizard.EYES_COLORS);
+  setupWizardEyes.style.fill = dataPlayerWizard.EYES_COLORS[eyeCounter];
+  wizardEyesInput.value = dataPlayerWizard.EYES_COLORS[eyeCounter];
+});
+
+setupFireball.addEventListener('click', function () {
+  fireballCounter = changeCounter(fireballCounter, dataPlayerWizard.FIREBALL_COLORS);
+  setupFireball.style.backgroundColor = dataPlayerWizard.FIREBALL_COLORS[fireballCounter];
+  fireballInput.value = dataPlayerWizard.FIREBALL_COLORS[fireballCounter];
+});
+
+var changeCounter = function (counter, mas) {
+  if (counter === (mas.length - 1)) {
+    counter = 0;
   } else {
-    countCounter++;
+    counter++;
   }
-  setupWizardCoat.style.fill = dataPlayerWizard.COATS[countCounter];
-  wizardCoatInput.value = dataPlayerWizard.COATS[countCounter];
-  console.log(wizardCoatInput.value);
-};
+  return counter;
+}
+
+// var changeWizardCoat = function () {
+//   if (coatCounter === (dataPlayerWizard.COATS.length - 1)) {
+//     coatCounter = 0;
+//   } else {
+//     coatCounter++;
+//   }
+//   setupWizardCoat.style.fill = dataPlayerWizard.COATS[coatCounter];
+//   wizardCoatInput.value = dataPlayerWizard.COATS[coatCounter];
+// };
 
 // функция-событие на закрытие окна по клавише ESC
 var onSetupWindowEscPress = function (evt) {
