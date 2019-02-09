@@ -1,4 +1,6 @@
 (function () {
+  var ESC_KEYCODE = 27;
+  var ENTER_KEYCODE = 13;
   var setupWindow = document.querySelector('.setup');
   var setupWindowOpen = document.querySelector('.setup-open');
   var setupWindowClose = document.querySelector('.setup-close');
