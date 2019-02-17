@@ -2,6 +2,7 @@
   var ESC_KEYCODE = 27;
   var ENTER_KEYCODE = 13;
   var setupWindow = document.querySelector('.setup');
+  var setupForm = setupWindow.querySelector('.setup-wizard-form');
   var setupWindowOpen = document.querySelector('.setup-open');
   var setupWindowClose = document.querySelector('.setup-close');
   var setupWindowUsername = setupWindow.querySelector('.setup-user-name');
@@ -60,5 +61,9 @@
     if (evt.keyCode === ENTER_KEYCODE) {
       openSetup();
     }
+  });
+
+  setupForm.addEventListener('submit', function (evt) {
+    evt.preventDefault();
   });
 })();
