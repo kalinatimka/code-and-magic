@@ -1,7 +1,7 @@
 (function () {
   var setupSimilarList = document.querySelector('.setup-similar-list');
   var similarWizardTemplate = document.querySelector('#similar-wizard-template').content;
-  var dataWizards = {
+  /*var dataWizards = {
     COUNT: 4,
     NAMES: ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'],
     SURNAMES: ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'],
@@ -30,7 +30,7 @@
       };
     }
     return wizards;
-  };
+  };*/
 
   // функция присвоения данных элементам разметки
   var renderWizard = function (wizard) {
@@ -42,14 +42,16 @@
   };
 
   // функия добавления схожих магов в разметку
-  var renderWizards = function () {
-    var wizards = generateWizards();
+  var renderWizards = function (wizards) {
+    // var wizards = generateWizards();
     var fragment = document.createDocumentFragment();
-    for (var i = 0; i < wizards.length; i++) {
+    for (var i = 0; i < 4; i++) {
       fragment.appendChild(renderWizard(wizards[i]));
     }
     setupSimilarList.appendChild(fragment);
+    document.querySelector('.setup-similar').classList.remove('hidden');
   };
 
-  renderWizards();
+  window.backend.load(renderWizards, errorHandler);
+  // renderWizards();
 })();
