@@ -26,7 +26,6 @@
   // функция открытия окна настройки персонажа
   var openSetup = function () {
     setupWindow.classList.remove('hidden');
-    document.querySelector('.setup-similar').classList.remove('hidden');
     useEscExit(true);
   };
 
@@ -35,6 +34,14 @@
     setupWindow.classList.add('hidden');
     useEscExit(false);
   };
+
+  var successHandler = function (response) {
+    setupWindow.classList.add('hidden');
+  }
+
+  window.errorHandler = function (response) {
+    alert('Произошла ошибка ' + response + '!');
+  }
 
   setupWindowUsername.addEventListener('focus', function () {
     useEscExit(false);
@@ -64,6 +71,7 @@
   });
 
   setupForm.addEventListener('submit', function (evt) {
+    window.backend.save(new FormData(setupForm), successHandler, errorHandler);
     evt.preventDefault();
   });
 })();
